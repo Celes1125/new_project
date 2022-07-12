@@ -1,14 +1,27 @@
 public class User {
-    public java.lang.String name;
-    public java.lang.String email;
+    public String name;
+    public String email;
 
-    public User(java.lang.String name, java.lang.String email) { /* compiled code */ }
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 
-    public java.lang.String getName() { /* compiled code */ }
+    public String getName() {
+        return name;
+    }
 
-    public void setName(java.lang.String name) { /* compiled code */ }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public java.lang.String getEmail() { /* compiled code */ }
+    public String getEmail() {
+        return email;
+    }
 
-    public void setEmail(java.lang.String email) { /* compiled code */ }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
 }
