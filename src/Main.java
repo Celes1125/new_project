@@ -86,9 +86,9 @@ public class Main {
     }
 
     public static void createUser() {
-        System.out.println("Escriba el nombre del nuevo usuario");
+        System.out.println("Proporcione el nombre del nuevo usuario");
         String name = scanner.next();
-        System.out.println("Escriba el e-mail del nuevo usuario");
+        System.out.println("Proporcione el e-mail del nuevo usuario");
         String email = scanner.next();
         User user1 = new User(name, email);
         users.add(user1);
@@ -97,8 +97,20 @@ public class Main {
 
     }
 
+
     public static void setUser() {
-        System.out.println("Hi!");
+        System.out.println("Proporcione el nombre del usuario que desea modificar");
+        String name = scanner.next();
+        System.out.println("Proporcione el nuevo nombre de usuario");
+        String newName = scanner.next();
+        for (User user: users ) {
+            if(user.getName() == name) {
+                user.setName(newName);
+            }else{
+                System.out.println("El usuario " + name + " no existe. Por favor ingrese un nombre de usuario válido");
+            }
+        }
+
 
     }
 
