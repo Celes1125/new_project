@@ -1,9 +1,9 @@
 
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
-    static HashSet<User> users = new HashSet<User>();
+    static HashMap<String, User> users = new HashMap<>();
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -196,8 +196,7 @@ public class Main {
         String name = scanner.next();
         System.out.println("Proporcione el e-mail del nuevo usuario");
         String email = scanner.next();
-        User user1 = new User(name, email);
-        users.add(user1);
+        users.put(email, new User(name, email));
         System.out.println("Usuario " + name + " ha sido creado con éxito");
 
 
@@ -205,23 +204,35 @@ public class Main {
 
 
     public static void setUser() {
-        System.out.println("Proporcione el nombre del usuario que desea modificar");
-        String name = scanner.next();
-        System.out.println("Proporcione el nuevo nombre de usuario");
+        System.out.println("Proporcione el e-mail del usuario que desea modificar");
+        String userEmail = scanner.next();
+        System.out.println("Proporcione el nuevo nombre que desea asignar al usuario cuyo e-mail es: " + userEmail);
         String newName = scanner.next();
-        for (User user : users) {
-            if (user.getName() == name) {
-                user.setName(newName);
-            } else {
-                System.out.println("El usuario " + name + " no existe. Por favor ingrese un nombre de usuario válido");
-            }
+
+        User user = users.get(userEmail);
+
+        if (user == null) {
+            System.out.println("Por favor ingrese un e-mail válido");
+            return;
         }
 
-
+        user.setName(newName);
+        //users.put(userEmail, user);
+        System.out.println("Usuario modificado con éxito");
     }
 
     public static void deleteUser() {
-        System.out.println("Hi!");
+        System.out.println("Proporcione el e-mail del usuario que desea eliminar");
+        String userEmail = scanner.next();
+
+        User user = users.get(userEmail);
+
+        if (user == null) {
+            System.out.println("Por favor ingrese un e-mail válido");
+            return;
+        }
+        users.remove(userEmail);
+        System.out.println("El usuario con email " + userEmail + " ha sido eliminado");
 
     }
 
@@ -271,8 +282,10 @@ public class Main {
     }
 
     public static void listUsers() {
-        for (User user : users) {
-            System.out.println("Nombre: " + user.getName() + " E-mail: " + user.getEmail());
+
+        for (String userEmail : users.keySet()) {
+            User user = users.get(userEmail);
+            System.out.println("Nombre: " + user.getName() + "---> Email: " + user.getEmail());
         }
     }
 
