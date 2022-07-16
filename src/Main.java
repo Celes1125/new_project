@@ -1,13 +1,11 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
-    static HashMap<String, User> users = new HashMap<>();
-    static HashMap<String, ArrayList<String>> categories = new HashMap<>();
-    static ArrayList<String> subcategories = new ArrayList<>();
+    private static HashMap<String, User> users = new HashMap<>();
+    private static HashMap<String, ArrayList<String>> categories = new HashMap<>();
     categories.put("INGRESOS", subcategories);
     categories.put("PRESTAMOS", subcategories);
     categories.put("BASICOS", subcategories);
@@ -16,6 +14,7 @@ public class Main {
     categories.put("AJUSTES", subcategories);
     categories.put("AHORROS", subcategories);
 
+    private static ArrayList<String> subcategories = new ArrayList<>();
     subcategories.add("Null");
     subcategories.add("Alimento balanceado");
     subcategories.add("Alimentos");
@@ -343,7 +342,16 @@ public class Main {
     }
 
     public static void listCategories() {
-        System.out.println("Hi!");
+        for ( String categoryName: categories.keySet()) {
+            Category category = categories.get(categoryName);
+            System.out.println(
+                    "Nombre: " + category.getName() +
+                    "Id: " + category.getId() +
+                    "Alcance: " + category.getScope()+
+                    "Monto acumulado: " + category.getAmount()
+            );
+
+        }
     }
 
     public static void listSubcategories() {
