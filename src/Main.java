@@ -1,9 +1,62 @@
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
     static HashMap<String, User> users = new HashMap<>();
+    static HashMap<String, ArrayList<String>> categories = new HashMap<>();
+    static ArrayList<String> subcategories = new ArrayList<>();
+    categories.put("INGRESOS", subcategories);
+    categories.put("PRESTAMOS", subcategories);
+    categories.put("BASICOS", subcategories);
+    categories.put("NIFUNIFA", subcategories);
+    categories.put("EXTRAS", subcategories);
+    categories.put("AJUSTES", subcategories);
+    categories.put("AHORROS", subcategories);
+
+    subcategories.add("Null");
+    subcategories.add("Alimento balanceado");
+    subcategories.add("Alimentos");
+    subcategories.add("Almacén/Kiosco");
+    subcategories.add("Alquiler");
+    subcategories.add("Artículos de cocina");
+    subcategories.add("Carne");
+    subcategories.add("Cigarrillos");
+    subcategories.add("Consultas médicas");
+    subcategories.add("Delivery");
+    subcategories.add("Dietética");
+    subcategories.add("Eventos");
+    subcategories.add("Farmacia");
+    subcategories.add("Fotocopias");
+    subcategories.add("Guardería");
+    subcategories.add("Guille autos");
+    subcategories.add("ICBC");
+    subcategories.add("Internet/Streaming");
+    subcategories.add("Juguetes");
+    subcategories.add("Luz");
+    subcategories.add("Nafta");
+    subcategories.add("Otros");
+    subcategories.add("Panadería");
+    subcategories.add("Pañales/Toallitas");
+    subcategories.add("Pollo");
+    subcategories.add("Productos de higiene");
+    subcategories.add("Productos de limpieza");
+    subcategories.add("Servicio de urgencia");
+    subcategories.add("Servicio de limpieza");
+    subcategories.add("Sueldos");
+    subcategories.add("Supermercado");
+    subcategories.add("Tarjetas");
+    subcategories.add("Taxi");
+    subcategories.add("Telefonía celular");
+    subcategories.add("Transporte");
+    subcategories.add("Verduras");
+    subcategories.add("Ahorros");
+    subcategories.add("Ropa/Zapatos");
+    subcategories.add("Bebidas");
+    subcategories.add("Peluquería canina/Veterinaria");
+
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
