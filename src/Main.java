@@ -324,23 +324,22 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
         System.out.println("Proporcione el nombre de la categoría que desea modificar");
-        String name = scan.nextLine();
-        System.out.println("Proporcione el nuevo nombre que desea asignar a " + name + ": ");
+        String categoryName = scan.nextLine();
+        System.out.println("Proporcione el nuevo nombre que desea asignar a " + categoryName + ": ");
         String newName = scan.nextLine();
         System.out.println("Proporcione el alcance que desea asignar a " + newName + ": ");
         String newScope = scan.nextLine();
 
-        Category categoryName = categories.get(name);
+        Category category = categories.get(categoryName);
 
-        if (categoryName == null) {
+        if (category == null) {
             System.out.println("Por favor ingrese una categoría válida");
             return;
         }
 
-        categoryName.setName(newName);
-        categoryName.setScope(newScope);
-
-        categories.put(categoryName.getName(), categoryName);
+        category.setName(newName);
+        category.setScope(newScope);
+        //categories.put(category.getName(), category);
         System.out.println("Categoría modificada con éxito");
 
     }
@@ -348,15 +347,14 @@ public class Main {
     public static void deleteCategory() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Proporcione el nombre de la categoría que desea ELIMINAR");
-        String name = scan.nextLine();
-        Category categoryName = categories.get(name);
-        if (categoryName == null) {
+        String categoryName = scan.nextLine();
+        Category category = categories.get(categoryName);
+        if (category == null) {
             System.out.println("Por favor ingrese una categoría válida");
             return;
         }
 
-        categories.remove(categoryName);
-        categories.remove(categoryName.getName(), categoryName);
+        categories.remove(category.getName(), category);
         System.out.println("Categoría eliminada con éxito");
 
     }
