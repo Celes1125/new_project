@@ -2,13 +2,11 @@ public class Category {
     private String name;
     private String scope;
     private int id;
-    private Double amount;
 
-    public Category(String name, String scope, int id, Double amount) {
+    public Category(String name, String scope, int id) {
         this.name = name;
         this.scope = scope;
         this.id = id;
-        this.amount = amount;
     }
 
     public String getName() {
@@ -35,12 +33,13 @@ public class Category {
         this.id = id;
     }
 
-    public Double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Double amount) {
-        this.amount = amount;
+    @Override
+    public String toString() {
+        return "Category{" +
+                "name='" + name + '\'' +
+                ", scope='" + scope + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
 

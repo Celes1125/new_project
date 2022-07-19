@@ -1,64 +1,80 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
-    private static HashMap<String, User> users = new HashMap<>();
-    private static HashMap<String, ArrayList<String>> categories = new HashMap<>();
-    categories.put("INGRESOS", subcategories);
-    categories.put("PRESTAMOS", subcategories);
-    categories.put("BASICOS", subcategories);
-    categories.put("NIFUNIFA", subcategories);
-    categories.put("EXTRAS", subcategories);
-    categories.put("AJUSTES", subcategories);
-    categories.put("AHORROS", subcategories);
-
-    private static ArrayList<String> subcategories = new ArrayList<>();
-    subcategories.add("Null");
-    subcategories.add("Alimento balanceado");
-    subcategories.add("Alimentos");
-    subcategories.add("Almacén/Kiosco");
-    subcategories.add("Alquiler");
-    subcategories.add("Artículos de cocina");
-    subcategories.add("Carne");
-    subcategories.add("Cigarrillos");
-    subcategories.add("Consultas médicas");
-    subcategories.add("Delivery");
-    subcategories.add("Dietética");
-    subcategories.add("Eventos");
-    subcategories.add("Farmacia");
-    subcategories.add("Fotocopias");
-    subcategories.add("Guardería");
-    subcategories.add("Guille autos");
-    subcategories.add("ICBC");
-    subcategories.add("Internet/Streaming");
-    subcategories.add("Juguetes");
-    subcategories.add("Luz");
-    subcategories.add("Nafta");
-    subcategories.add("Otros");
-    subcategories.add("Panadería");
-    subcategories.add("Pañales/Toallitas");
-    subcategories.add("Pollo");
-    subcategories.add("Productos de higiene");
-    subcategories.add("Productos de limpieza");
-    subcategories.add("Servicio de urgencia");
-    subcategories.add("Servicio de limpieza");
-    subcategories.add("Sueldos");
-    subcategories.add("Supermercado");
-    subcategories.add("Tarjetas");
-    subcategories.add("Taxi");
-    subcategories.add("Telefonía celular");
-    subcategories.add("Transporte");
-    subcategories.add("Verduras");
-    subcategories.add("Ahorros");
-    subcategories.add("Ropa/Zapatos");
-    subcategories.add("Bebidas");
-    subcategories.add("Peluquería canina/Veterinaria");
 
     static Scanner scanner = new Scanner(System.in);
+    private static HashMap<String, User> users = new HashMap<>();
+
+    private static HashMap<String, Category> categories = new HashMap<>();
+
+    //private static HashSet<Category> subCategories = new HashSet<>();
+
+    //public static HashMap<String, ArrayList<Category>> subcategories = new HashMap<>();
+
+    public static void addDefaultCategories() {
+        categories.put("INGRESOS", new Category("INGRESOS", "sueldos, ganancias, renta, etc", 1));
+        categories.put("PRESTAMOS", new Category("PRESTAMOS", "solicitudes/adjudicaciones de préstamos", 2));
+        categories.put("BASICOS", new Category("BASICOS", "gastos ineludibles", 3));
+        categories.put("NIFUNIFA", new Category("NIFUNIFA", "gastos que no son básicos pero tampoco extras", 4));
+        categories.put("EXTRAS", new Category("EXTRAS", "gastos extra", 5));
+        categories.put("AJUSTES", new Category("AJUSTES", "montos con función de ajuste de balance", 6));
+        categories.put("AHORROS", new Category("AHORROS", "montos bajo concepto de ahorro", 7));
+    }
+
+        /*subcategories.add("Null");
+        subcategories.add("Alimento balanceado");
+        subcategories.add("Alimentos");
+        subcategories.add("Almacén/Kiosco");
+        subcategories.add("Alquiler");
+        subcategories.add("Artículos de cocina");
+        subcategories.add("Carne");
+        subcategories.add("Cigarrillos");
+        subcategories.add("Consultas médicas");
+        subcategories.add("Delivery");
+        subcategories.add("Dietética");
+        subcategories.add("Eventos");
+        subcategories.add("Farmacia");
+        subcategories.add("Fotocopias");
+        subcategories.add("Guardería");
+        subcategories.add("Guille autos");
+        subcategories.add("ICBC");
+        subcategories.add("Internet/Streaming");
+        subcategories.add("Juguetes");
+        subcategories.add("Luz");
+        subcategories.add("Nafta");
+        subcategories.add("Otros");
+        subcategories.add("Panadería");
+        subcategories.add("Pañales/Toallitas");
+        subcategories.add("Pollo");
+        subcategories.add("Productos de higiene");
+        subcategories.add("Productos de limpieza");
+        subcategories.add("Servicio de urgencia");
+        subcategories.add("Servicio de limpieza");
+        subcategories.add("Sueldos");
+        subcategories.add("Supermercado");
+        subcategories.add("Tarjetas");
+        subcategories.add("Taxi");
+        subcategories.add("Telefonía celular");
+        subcategories.add("Transporte");
+        subcategories.add("Verduras");
+        subcategories.add("Ahorros");
+        subcategories.add("Ropa/Zapatos");
+        subcategories.add("Bebidas");
+        subcategories.add("Peluquería canina/Veterinaria");
+*/
+
+
+
 
     public static void main(String[] args) {
+
+        //MÉTODOS QUE DEBEN EJECUTARSE AL INICIO
+
+        addDefaultCategories();
 
         //MENU PRINCIPAL
 
@@ -243,23 +259,27 @@ public class Main {
 
     //MÉTODOS PARA CADA OPERACIÓN
 
+
+
+
     public static void createUser() {
+        Scanner scan = new Scanner(System.in);
         System.out.println("Proporcione el nombre del nuevo usuario");
-        String name = scanner.next();
+        String name = scan.nextLine();
         System.out.println("Proporcione el e-mail del nuevo usuario");
-        String email = scanner.next();
+        String email = scan.nextLine();
         users.put(email, new User(name, email));
         System.out.println("Usuario " + name + " ha sido creado con éxito");
 
 
     }
 
-
     public static void setUser() {
+        Scanner scan = new Scanner(System.in);
         System.out.println("Proporcione el e-mail del usuario que desea modificar");
-        String userEmail = scanner.next();
+        String userEmail = scan.nextLine();
         System.out.println("Proporcione el nuevo nombre que desea asignar al usuario cuyo e-mail es: " + userEmail);
-        String newName = scanner.next();
+        String newName = scan.nextLine();
 
         User user = users.get(userEmail);
 
@@ -269,16 +289,15 @@ public class Main {
         }
 
         user.setName(newName);
-        //users.put(userEmail, user);
+        users.put(userEmail, user);
         System.out.println("Usuario modificado con éxito");
     }
 
     public static void deleteUser() {
+        Scanner scan = new Scanner(System.in);
         System.out.println("Proporcione el e-mail del usuario que desea eliminar");
-        String userEmail = scanner.next();
-
+        String userEmail = scan.nextLine();
         User user = users.get(userEmail);
-
         if (user == null) {
             System.out.println("Por favor ingrese un e-mail válido");
             return;
@@ -289,17 +308,56 @@ public class Main {
     }
 
     public static void createCategory() {
-        System.out.println("Hi!");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Proporcione el nombre de su nueva categoría");
+        String name = scan.nextLine();
+        System.out.println("Describa a qué hace referencia esta nueva categoría");
+        String scope = scan.nextLine();
+        int id = categories.size()+1;
+        categories.put(name, new Category(name, scope, id));
+        System.out.println("Categoría " + name + " ha sido creada con éxito");
+
 
     }
 
     public static void setCategory() {
-        System.out.println("Hi!");
+
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Proporcione el nombre de la categoría que desea modificar");
+        String name = scan.nextLine();
+        System.out.println("Proporcione el nuevo nombre que desea asignar a " + name + ": ");
+        String newName = scan.nextLine();
+        System.out.println("Proporcione el alcance que desea asignar a " + newName + ": ");
+        String newScope = scan.nextLine();
+
+        Category categoryName = categories.get(name);
+
+        if (categoryName == null) {
+            System.out.println("Por favor ingrese una categoría válida");
+            return;
+        }
+
+        categoryName.setName(newName);
+        categoryName.setScope(newScope);
+
+        categories.put(categoryName.getName(), categoryName);
+        System.out.println("Categoría modificada con éxito");
 
     }
 
     public static void deleteCategory() {
-        System.out.println("Hi!");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Proporcione el nombre de la categoría que desea ELIMINAR");
+        String name = scan.nextLine();
+        Category categoryName = categories.get(name);
+        if (categoryName == null) {
+            System.out.println("Por favor ingrese una categoría válida");
+            return;
+        }
+
+        categories.remove(categoryName);
+        categories.remove(categoryName.getName(), categoryName);
+        System.out.println("Categoría eliminada con éxito");
 
     }
 
@@ -342,15 +400,10 @@ public class Main {
     }
 
     public static void listCategories() {
-        for ( String categoryName: categories.keySet()) {
+        System.out.println("LISTA DE CATEGORÍAS:");
+        for (String categoryName : categories.keySet()) {
             Category category = categories.get(categoryName);
-            System.out.println(
-                    "Nombre: " + category.getName() +
-                    "Id: " + category.getId() +
-                    "Alcance: " + category.getScope()+
-                    "Monto acumulado: " + category.getAmount()
-            );
-
+            System.out.println(category.getName()+ "(id: " + category.getId()+") - alcance: "+ category.getScope()+ " -");
         }
     }
 
