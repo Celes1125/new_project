@@ -1,12 +1,24 @@
 public class Category {
     private String name;
     private String scope;
-    private int id;
+    private Integer id;
+    private Integer level;
 
-    public Category(String name, String scope, int id) {
+    public Category(String name, String scope, Integer id, Integer level) {
         this.name = name;
         this.scope = scope;
         this.id = id;
+        this.level = level;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "name='" + name + '\'' +
+                ", scope='" + scope + '\'' +
+                ", id=" + id +
+                ", level=" + level +
+                '}';
     }
 
     public String getName() {
@@ -25,21 +37,20 @@ public class Category {
         this.scope = scope;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Category{" +
-                "name='" + name + '\'' +
-                ", scope='" + scope + '\'' +
-                ", id=" + id +
-                '}';
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }
 

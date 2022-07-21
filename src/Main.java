@@ -1,7 +1,5 @@
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
@@ -9,70 +7,15 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
     private static HashMap<String, User> users = new HashMap<>();
 
-    private static HashMap<String, Category> categories = new HashMap<>();
+    private static HashMap<Integer, Category> categories = new HashMap<>();
 
-    //private static HashSet<Category> subCategories = new HashSet<>();
 
-    //public static HashMap<String, ArrayList<Category>> subcategories = new HashMap<>();
-
-    public static void addDefaultCategories() {
-        categories.put("INGRESOS", new Category("INGRESOS", "sueldos, ganancias, renta, etc", 1));
-        categories.put("PRESTAMOS", new Category("PRESTAMOS", "solicitudes/adjudicaciones de préstamos", 2));
-        categories.put("BASICOS", new Category("BASICOS", "gastos ineludibles", 3));
-        categories.put("NIFUNIFA", new Category("NIFUNIFA", "gastos que no son básicos pero tampoco extras", 4));
-        categories.put("EXTRAS", new Category("EXTRAS", "gastos extra", 5));
-        categories.put("AJUSTES", new Category("AJUSTES", "montos con función de ajuste de balance", 6));
-        categories.put("AHORROS", new Category("AHORROS", "montos bajo concepto de ahorro", 7));
-    }
-
-        /*subcategories.add("Null");
-        subcategories.add("Alimento balanceado");
-        subcategories.add("Alimentos");
-        subcategories.add("Almacén/Kiosco");
-        subcategories.add("Alquiler");
-        subcategories.add("Artículos de cocina");
-        subcategories.add("Carne");
-        subcategories.add("Cigarrillos");
-        subcategories.add("Consultas médicas");
-        subcategories.add("Delivery");
-        subcategories.add("Dietética");
-        subcategories.add("Eventos");
-        subcategories.add("Farmacia");
-        subcategories.add("Fotocopias");
-        subcategories.add("Guardería");
-        subcategories.add("Guille autos");
-        subcategories.add("ICBC");
-        subcategories.add("Internet/Streaming");
-        subcategories.add("Juguetes");
-        subcategories.add("Luz");
-        subcategories.add("Nafta");
-        subcategories.add("Otros");
-        subcategories.add("Panadería");
-        subcategories.add("Pañales/Toallitas");
-        subcategories.add("Pollo");
-        subcategories.add("Productos de higiene");
-        subcategories.add("Productos de limpieza");
-        subcategories.add("Servicio de urgencia");
-        subcategories.add("Servicio de limpieza");
-        subcategories.add("Sueldos");
-        subcategories.add("Supermercado");
-        subcategories.add("Tarjetas");
-        subcategories.add("Taxi");
-        subcategories.add("Telefonía celular");
-        subcategories.add("Transporte");
-        subcategories.add("Verduras");
-        subcategories.add("Ahorros");
-        subcategories.add("Ropa/Zapatos");
-        subcategories.add("Bebidas");
-        subcategories.add("Peluquería canina/Veterinaria");
-*/
 
 
 
 
     public static void main(String[] args) {
 
-        //MÉTODOS QUE DEBEN EJECUTARSE AL INICIO
 
         addDefaultCategories();
 
@@ -82,11 +25,10 @@ public class Main {
 
         do {
             System.out.println("Seleccione la opción deseada");
-            System.out.println("1. USUARIO");
-            System.out.println("2. CATEGORIA");
-            System.out.println("3. SUBCATEGORÍA");
-            System.out.println("4. OPERACIONES");
-            System.out.println("5. SALIR");
+            System.out.println("1. USUARIOS");
+            System.out.println("2. CATEGORIAS");
+            System.out.println("3. OPERACIONES");
+            System.out.println("4. SALIR");
 
             option = scanner.nextInt();
 
@@ -98,25 +40,22 @@ public class Main {
                     showOptionsForCategory();
                     break;
                 case 3:
-                    showOptionsforSubcategory();
-                    break;
-                case 4:
                     showOptionsforOperations();
                     break;
-                case 5:
+                case 4:
                     System.out.println("Gracias por utilizar nuestros servicios");
                     break;
                 default:
                     System.out.println("Por favor, seleccione una opción válida");
 
             }
-        } while (option != 5);
+        } while (option != 4);
 
 
     }
 
 
-    //MÉTODOS PARA NAVEGAR EL MENÚ
+    //MÉTODOS PARA NAVEGAR EL MENÚ////////////////////////////////////////////////////////////
 
     public static void showOptionsForUser() {
         int option = 0;
@@ -189,43 +128,6 @@ public class Main {
 
     }
 
-    public static void showOptionsforSubcategory() {
-        int option = 0;
-        do {
-
-            System.out.println("Seleccione la opción deseada");
-            System.out.println("1. CREAR SUBCATEGORÍA");
-            System.out.println("2. MODIFICAR SUBCATEGORÍA");
-            System.out.println("3. ELIMINAR SUBCATEGORÍA");
-            System.out.println("4. LISTAR SUBCATEGORÍAS");
-            System.out.println("5. VOLVER AL MENU PRINCIPAL");
-
-            option = scanner.nextInt();
-
-            switch (option) {
-                case 1:
-                    createSubcategory();
-                    break;
-                case 2:
-                    setSubcategory();
-                    break;
-                case 3:
-                    deleteSubcategory();
-                    break;
-                case 4:
-                    listSubcategories();
-                    break;
-                case 5:
-                    System.out.println("Adios!");
-                    break;
-                default:
-                    System.out.println("Por favor, seleccione una opción válida");
-            }
-        } while (option != 5);
-
-
-    }
-
     public static void showOptionsforOperations() {
         int option = 0;
         do {
@@ -257,10 +159,50 @@ public class Main {
         } while (option != 4);
     }
 
-    //MÉTODOS PARA CADA OPERACIÓN
+    //MÉTODOS QUE DEBEN EJECUTARSE AL INICIO////////////////////////////////////////////////////////////
+    public static void addDefaultCategories() {
+        categories.put(1, new Category("INGRESOS", "sueldos, ganancias, renta, etc", 1,1));
+        categories.put(2, new Category("PRESTAMOS", "solicitudes/adjudicaciones de préstamos", 2, 1));
+        categories.put(3, new Category("BASICOS", "gastos ineludibles", 3, 1));
+        categories.put(4, new Category("NIFUNIFA", "gastos que no son básicos pero tampoco extras", 4, 1));
+        categories.put(5, new Category("EXTRAS", "gastos extra", 5, 1));
+        categories.put(6, new Category("AJUSTES", "montos con función de ajuste de balance", 6,1));
+        categories.put(7, new Category("AHORROS", "montos bajo concepto de ahorro", 7, 1));
+        categories.put(8, new Category("agua", "", 8, 2));
+        categories.put(9, new Category("alquiler", "", 9, 2));
+        categories.put(10, new Category("banca", "", 10, 2));
+        categories.put(11, new Category("carnicería", "", 11, 2));
+        categories.put(12, new Category("cuidado personal", "", 12, 2));
+        categories.put(13, new Category("delivery", "", 13, 2));
+        categories.put(14, new Category("dietética", "", 14, 2));
+        categories.put(15, new Category("educación", "", 15, 2));
+        categories.put(16, new Category("gas", "", 16, 2));
+        categories.put(17, new Category("guille autos", "", 17, 2));
+        categories.put(18, new Category("higiene personal", "", 18, 2));
+        categories.put(19, new Category("hogar/deco/muebles", "", 19, 2));
+        categories.put(20, new Category("impuestos", "", 20, 2));
+        categories.put(21, new Category("internet/streaming/telefonía", "", 21, 2));
+        categories.put(22, new Category("juguetes", "", 22, 2));
+        categories.put(23, new Category("librería", "", 23, 2));
+        categories.put(24, new Category("limpieza", "", 24, 2));
+        categories.put(25, new Category("luz", "", 25, 2));
+        categories.put(26, new Category("mercado", "", 26, 2));
+        categories.put(27, new Category("nafta/gas/gasoil", "", 27, 2));
+        categories.put(28, new Category("ocio", "", 28, 2));
+        categories.put(29, new Category("panadería", "", 29, 2));
+        categories.put(30, new Category("pollería", "", 30, 2));
+        categories.put(31, new Category("servicios de salud", "", 31, 2));
+        categories.put(32, new Category("sueldos", "", 32, 2));
+        categories.put(33, new Category("tarjetas de crédito", "", 33, 2));
+        categories.put(34, new Category("trámites", "", 34, 2));
+        categories.put(35, new Category("transporte público", "", 35, 2));
+        categories.put(36, new Category("verdulería", "", 36, 2));
+        categories.put(37, new Category("otros", "", 37, 2));
 
 
+    }
 
+    //MÉTODOS PARA CADA OPERACIÓN/////////////////////////////////////////////////////////////
 
     public static void createUser() {
         Scanner scan = new Scanner(System.in);
@@ -313,64 +255,54 @@ public class Main {
         String name = scan.nextLine();
         System.out.println("Describa a qué hace referencia esta nueva categoría");
         String scope = scan.nextLine();
-        int id = categories.size()+1;
-        categories.put(name, new Category(name, scope, id));
-        System.out.println("Categoría " + name + " ha sido creada con éxito");
-
-
-    }
+        Integer id = categories.size()+1;
+        System.out.println("Indique el nivel de su nueva categoría");
+        System.out.println("1. Primer nivel");
+        System.out.println("2. Segundo nivel");
+        Integer level = scan.nextInt();
+        categories.put(id, new Category(name, scope, id, level));
+        System.out.println("Categoría " + name + " ha sido creada con éxito");    }
 
     public static void setCategory() {
 
         Scanner scan = new Scanner(System.in);
-        System.out.println("Proporcione el nombre de la categoría que desea modificar");
-        String categoryName = scan.nextLine();
-        System.out.println("Proporcione el nuevo nombre que desea asignar a " + categoryName + ": ");
-        String newName = scan.nextLine();
-        System.out.println("Proporcione el alcance que desea asignar a " + newName + ": ");
-        String newScope = scan.nextLine();
-
-        Category category = categories.get(categoryName);
-
+        System.out.println("Proporcione el id de la categoría que desea modificar");
+        Integer categoryId = scan.nextInt();
+        Category category = categories.get(categoryId);
         if (category == null) {
             System.out.println("Por favor ingrese una categoría válida");
             return;
         }
-
+        System.out.println("el nombre actual de la categoría que desea modificar es: " + category.getName());
+        System.out.println("Está seguro de modificar la categoría " + category.getName() + "(id: " + category.getId() + ") ?????");
+        System.out.println("Proporcione el nuevo nombre que desea asignar a " + category.getName() + ": ");
+        String newName = scan.nextLine();
+        System.out.println("Proporcione el alcance que desea asignar a " + newName + ": ");
+        String newScope = scan.nextLine();
+        System.out.println("Proporcione el nivel que desea asignar a " + newName + ": ");
+        Integer newLevel = scan.nextInt();
         category.setName(newName);
         category.setScope(newScope);
-        //categories.put(category.getName(), category);
+        category.setLevel(newLevel);
+        //categories.put(category.getId(), category);
         System.out.println("Categoría modificada con éxito");
 
     }
 
     public static void deleteCategory() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Proporcione el nombre de la categoría que desea ELIMINAR");
-        String categoryName = scan.nextLine();
-        Category category = categories.get(categoryName);
+        System.out.println("Proporcione el id de la categoría que desea ELIMINAR");
+        Integer categoryId = scan.nextInt();
+        Category category = categories.get(categoryId);
         if (category == null) {
             System.out.println("Por favor ingrese una categoría válida");
             return;
         }
+        System.out.println("el nombre actual de la categoría que desea modificar es: " + category.getName());
+        System.out.println("Está seguro de ELIMINAR la categoría " + category.getName() + "(id: " + category.getId() + ") ?????");
 
-        categories.remove(category.getName(), category);
+        categories.remove(categoryId, category);
         System.out.println("Categoría eliminada con éxito");
-
-    }
-
-    public static void createSubcategory() {
-        System.out.println("Hi!");
-
-    }
-
-    public static void setSubcategory() {
-        System.out.println("Hi!");
-
-    }
-
-    public static void deleteSubcategory() {
-        System.out.println("Hi!");
 
     }
 
@@ -398,16 +330,20 @@ public class Main {
     }
 
     public static void listCategories() {
+        System.out.println("---------------------------------------------------");
+        System.out.println("");
         System.out.println("LISTA DE CATEGORÍAS:");
-        for (String categoryName : categories.keySet()) {
-            Category category = categories.get(categoryName);
-            System.out.println(category.getName()+ "(id: " + category.getId()+") - alcance: "+ category.getScope()+ " -");
+        System.out.println("");
+
+        for (Integer categoryId : categories.keySet()) {
+            Category category = categories.get(categoryId);
+            System.out.println("(id: " + category.getId()+") - Nombre: " + category.getName()+ " -  NIVEL " + category.getLevel() + " -- Alcance: " + category.getScope()+ " -");
         }
+        System.out.println("");
+        System.out.println("---------------------------------------------------");
+
     }
 
-    public static void listSubcategories() {
-        System.out.println("Hi!");
-    }
 
 
 }
