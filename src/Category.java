@@ -1,10 +1,10 @@
 public class Category {
     private String name;
     private String scope;
-    private Integer id;
-    private Integer level;
+    private int id;
+    private int level;
 
-    public Category(String name, String scope, Integer id, Integer level) {
+    public Category(String name, String scope, int id, int level) {
         this.name = name;
         this.scope = scope;
         this.id = id;
@@ -37,19 +37,19 @@ public class Category {
         this.scope = scope;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getLevel() {
+    public int getLevel() {
         return level;
     }
 
-    public void setLevel(Integer level) {
+    public void setLevel(int level) {
         this.level = level;
     }
 }

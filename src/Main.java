@@ -3,26 +3,13 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
-
     static Scanner scanner = new Scanner(System.in);
     private static HashMap<String, User> users = new HashMap<>();
-
     private static HashMap<Integer, Category> categories = new HashMap<>();
-
-
-
-
-
-
     public static void main(String[] args) {
-
-
         addDefaultCategories();
-
         //MENU PRINCIPAL
-
         int option = 0;
-
         do {
             System.out.println("Seleccione la opción deseada");
             System.out.println("1. USUARIOS");
@@ -50,13 +37,8 @@ public class Main {
 
             }
         } while (option != 4);
-
-
     }
-
-
     //MÉTODOS PARA NAVEGAR EL MENÚ////////////////////////////////////////////////////////////
-
     public static void showOptionsForUser() {
         int option = 0;
         do {
@@ -91,11 +73,9 @@ public class Main {
         } while (option != 5);
 
     }
-
     public static void showOptionsForCategory() {
         int option = 0;
         do {
-
             System.out.println("Seleccione la opción deseada");
             System.out.println("1. CREAR CATEGORÍA");
             System.out.println("2. MODIFICAR CATEGORÍA");
@@ -125,9 +105,7 @@ public class Main {
                     System.out.println("Por favor, seleccione una opción válida");
             }
         } while (option != 5);
-
     }
-
     public static void showOptionsforOperations() {
         int option = 0;
         do {
@@ -158,7 +136,6 @@ public class Main {
             }
         } while (option != 4);
     }
-
     //MÉTODOS QUE DEBEN EJECUTARSE AL INICIO////////////////////////////////////////////////////////////
     public static void addDefaultCategories() {
         categories.put(1, new Category("INGRESOS", "sueldos, ganancias, renta, etc", 1,1));
@@ -198,31 +175,25 @@ public class Main {
         categories.put(35, new Category("transporte público", "", 35, 2));
         categories.put(36, new Category("verdulería", "", 36, 2));
         categories.put(37, new Category("otros", "", 37, 2));
-
-
     }
-
     //MÉTODOS PARA CADA OPERACIÓN/////////////////////////////////////////////////////////////
-
     public static void createUser() {
-        Scanner scan = new Scanner(System.in);
+        scanner.nextLine();
         System.out.println("Proporcione el nombre del nuevo usuario");
-        String name = scan.nextLine();
+        String name = scanner.nextLine();
         System.out.println("Proporcione el e-mail del nuevo usuario");
-        String email = scan.nextLine();
+        String email = scanner.nextLine();
         users.put(email, new User(name, email));
         System.out.println("Usuario " + name + " ha sido creado con éxito");
 
 
     }
-
     public static void setUser() {
-        Scanner scan = new Scanner(System.in);
+        scanner.nextLine();
         System.out.println("Proporcione el e-mail del usuario que desea modificar");
-        String userEmail = scan.nextLine();
+        String userEmail = scanner.nextLine();
         System.out.println("Proporcione el nuevo nombre que desea asignar al usuario cuyo e-mail es: " + userEmail);
-        String newName = scan.nextLine();
-
+        String newName = scanner.nextLine();
         User user = users.get(userEmail);
 
         if (user == null) {
@@ -234,11 +205,11 @@ public class Main {
         users.put(userEmail, user);
         System.out.println("Usuario modificado con éxito");
     }
-
     public static void deleteUser() {
-        Scanner scan = new Scanner(System.in);
+        scanner.nextLine();
         System.out.println("Proporcione el e-mail del usuario que desea eliminar");
-        String userEmail = scan.nextLine();
+        String userEmail = scanner.nextLine();
+
         User user = users.get(userEmail);
         if (user == null) {
             System.out.println("Por favor ingrese un e-mail válido");
@@ -248,51 +219,46 @@ public class Main {
         System.out.println("El usuario con email " + userEmail + " ha sido eliminado");
 
     }
-
     public static void createCategory() {
-        Scanner scan = new Scanner(System.in);
+        scanner.nextLine();
         System.out.println("Proporcione el nombre de su nueva categoría");
-        String name = scan.nextLine();
+        String name = scanner.nextLine();
         System.out.println("Describa a qué hace referencia esta nueva categoría");
-        String scope = scan.nextLine();
-        Integer id = categories.size()+1;
+        String scope = scanner.nextLine();
+        int id = categories.size()+1;
         System.out.println("Indique el nivel de su nueva categoría");
         System.out.println("1. Primer nivel");
         System.out.println("2. Segundo nivel");
-        Integer level = scan.nextInt();
+        int level = scanner.nextInt();
         categories.put(id, new Category(name, scope, id, level));
         System.out.println("Categoría " + name + " ha sido creada con éxito");    }
-
     public static void setCategory() {
-
-        Scanner scan = new Scanner(System.in);
+        scanner.nextLine();
         System.out.println("Proporcione el id de la categoría que desea modificar");
-        Integer categoryId = scan.nextInt();
+        int categoryId = scanner.nextInt();
         Category category = categories.get(categoryId);
         if (category == null) {
             System.out.println("Por favor ingrese una categoría válida");
             return;
         }
         System.out.println("el nombre actual de la categoría que desea modificar es: " + category.getName());
-        System.out.println("Está seguro de modificar la categoría " + category.getName() + "(id: " + category.getId() + ") ?????");
         System.out.println("Proporcione el nuevo nombre que desea asignar a " + category.getName() + ": ");
-        String newName = scan.nextLine();
-        System.out.println("Proporcione el alcance que desea asignar a " + newName + ": ");
-        String newScope = scan.nextLine();
-        System.out.println("Proporcione el nivel que desea asignar a " + newName + ": ");
-        Integer newLevel = scan.nextInt();
+        String newName = scanner.nextLine();
         category.setName(newName);
+        System.out.println("Proporcione el alcance que desea asignar"  + newName + ": ");
+        String newScope = scanner.nextLine();
         category.setScope(newScope);
+        System.out.println("Proporcione el nivel que desea asignar a " + newName + ": ");
+        int newLevel = scanner.nextInt();
         category.setLevel(newLevel);
         //categories.put(category.getId(), category);
         System.out.println("Categoría modificada con éxito");
 
     }
-
     public static void deleteCategory() {
-        Scanner scan = new Scanner(System.in);
+        scanner.nextLine();
         System.out.println("Proporcione el id de la categoría que desea ELIMINAR");
-        Integer categoryId = scan.nextInt();
+        Integer categoryId = scanner.nextInt();
         Category category = categories.get(categoryId);
         if (category == null) {
             System.out.println("Por favor ingrese una categoría válida");
@@ -305,22 +271,18 @@ public class Main {
         System.out.println("Categoría eliminada con éxito");
 
     }
-
     public static void recordOutlay() {
         System.out.println("Hi!");
 
     }
-
     public static void recordIncome() {
         System.out.println("Hi!");
 
     }
-
     public static void checkBalance() {
         System.out.println("Hi!");
 
     }
-
     public static void listUsers() {
 
         for (String userEmail : users.keySet()) {
@@ -328,7 +290,6 @@ public class Main {
             System.out.println("Nombre: " + user.getName() + "---> Email: " + user.getEmail());
         }
     }
-
     public static void listCategories() {
         System.out.println("---------------------------------------------------");
         System.out.println("");
@@ -343,8 +304,6 @@ public class Main {
         System.out.println("---------------------------------------------------");
 
     }
-
-
 
 }
 
